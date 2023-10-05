@@ -5,28 +5,20 @@ import com.iesam.kotlintrainning.Either
 import com.iesam.kotlintrainning.left
 import com.iesam.kotlintrainning.right
 import com.ugdgomezdiez.androidtraining.app.ErrorApp
-import com.ugdgomezdiez.androidtraining.domain.Input
+
 import com.ugdgomezdiez.androidtraining.domain.SaveUserUseCase
+import com.ugdgomezdiez.androidtraining.domain.User
 
 class XmlLocalDataSource (private val context: Context){
     val sharedPref = context.getSharedPreferences("users", Context.MODE_PRIVATE)
 
-    fun saveUser(input: Input): Either<ErrorApp, Boolean> {
-        /*val editor = sharedPref.edit()
-        editor.putString("username", username)
-        editor.putString("surname", surname)
-        editor.apply()
+    fun saveUser(input: SaveUserUseCase.Input): Either<ErrorApp, Boolean> {
 
-        sharedPref.edit().apply{
-            putString("username", username)
-            putString("surname", surname)
-            apply()
-        }*/
         return try {
             with(sharedPref.edit()){
                 putString("username", input.username)
                 putString("surname", input.surname)
-                putString("date", input.date)
+                putString("date", input.age)
 
                 apply()
             }
@@ -36,5 +28,17 @@ class XmlLocalDataSource (private val context: Context){
         }
 
 
+    }
+    fun findUser(): Either<ErrorApp, User> {
+        return try {
+            User(
+                sharedPref.getInt("id", 0),
+                sharedPref.getString("username", "")!!,
+                sharedPref.getString("surname", "")!!,
+                sharedPref.getString("age", "")!!
+            ).right()
+        } catch (ex: java.lang.Exception) {
+            return ErrorApp.UnknowError.left()
+        }
     }
 }

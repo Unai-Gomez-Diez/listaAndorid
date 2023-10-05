@@ -5,17 +5,21 @@ import android.os.Bundle
 import android.widget.Button
 import android.widget.EditText
 import androidx.activity.viewModels
+import androidx.lifecycle.Observer
 import com.ugdgomezdiez.androidtraining.R
 import com.ugdgomezdiez.androidtraining.data.UserDataRepository
 import com.ugdgomezdiez.androidtraining.data.local.XmlLocalDataSource
+import com.ugdgomezdiez.androidtraining.domain.GetUserUseCase
 import com.ugdgomezdiez.androidtraining.domain.SaveUserUseCase
+import com.ugdgomezdiez.androidtraining.domain.User
 
 class MainActivity : AppCompatActivity() {
 
     //val viewModels: FormularioViewModel by viewModels()
     val viewModel: FormularioViewModel by lazy {
         FormularioViewModel(
-            SaveUserUseCase(UserDataRepository(XmlLocalDataSource(this)))
+            SaveUserUseCase(UserDataRepository(XmlLocalDataSource(this))),
+            GetUserUseCase(UserDataRepository(XmlLocalDataSource(this)))
         )
     }
 
@@ -23,10 +27,13 @@ class MainActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_formulario)
         setupView()
+        setupObservers()
+        viewModel.loadUser()
     }
 
 
     private fun setupView(){
+        //poner uno para recuperar
         val actionButton = findViewById<Button>(R.id.action_save)
         actionButton.setOnClickListener {
             viewModel.saveUser(getNameInput(),getSurnameInput(),getDateInput())
@@ -41,6 +48,33 @@ class MainActivity : AppCompatActivity() {
         findViewById<EditText>(R.id.input_surname).text.toString()
 
    private fun getDateInput(): String=
-       findViewById<EditText>(R.id.input_date_born).text.toString()
+       findViewById<EditText>(R.id.input_age).text.toString()
 
+    private fun setupObservers() {
+        val observer = Observer<FormularioViewModel.UiState> {
+            //Código al notificar el observador
+            it.user?.apply {
+                bindData(this)
+            }
+        }
+        viewModel.uiState.observe(this, observer)
+    }
+
+    private fun bindData(user: User) {
+        setNameInput(user.username)
+        setSurnameInput(user.surname)
+        setAgeInput(user.age)
+    }
+
+    private fun setNameInput(name: String) {
+        findViewById<EditText>(R.id.input_name).setText(name)
+    }
+
+    private fun setSurnameInput(surname: String) {
+        findViewById<EditText>(R.id.input_surname).setText(surname)
+    }
+
+    private fun setAgeInput(age: String) {
+        findViewById<EditText>(R.id.input_age).setText(age)
+    }
 }

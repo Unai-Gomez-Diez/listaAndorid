@@ -5,5 +5,6 @@ import com.ugdgomezdiez.androidtraining.app.ErrorApp
 
 interface UserRepository {
 
-    fun save(input: Input): Either<ErrorApp, Boolean>
+    fun save(input: SaveUserUseCase.Input): Either<ErrorApp, Boolean>
+    fun obtain(): Either<ErrorApp, User>
 }
