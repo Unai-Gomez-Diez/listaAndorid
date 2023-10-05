@@ -29,7 +29,7 @@ class MainActivity : AppCompatActivity() {
     private fun setupView(){
         val actionButton = findViewById<Button>(R.id.action_save)
         actionButton.setOnClickListener {
-            viewModel.saveUser("Unai","Gomez")
+            viewModel.saveUser(getNameInput(),getSurnameInput(),getDateInput())
         }
     }
 
@@ -39,5 +39,8 @@ class MainActivity : AppCompatActivity() {
 
    private fun getSurnameInput(): String=
         findViewById<EditText>(R.id.input_surname).text.toString()
+
+   private fun getDateInput(): String=
+       findViewById<EditText>(R.id.input_date_born).text.toString()
 
 }

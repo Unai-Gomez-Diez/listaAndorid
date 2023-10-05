@@ -5,11 +5,13 @@ import com.iesam.kotlintrainning.Either
 import com.iesam.kotlintrainning.left
 import com.iesam.kotlintrainning.right
 import com.ugdgomezdiez.androidtraining.app.ErrorApp
+import com.ugdgomezdiez.androidtraining.domain.Input
+import com.ugdgomezdiez.androidtraining.domain.SaveUserUseCase
 
 class XmlLocalDataSource (private val context: Context){
     val sharedPref = context.getSharedPreferences("users", Context.MODE_PRIVATE)
 
-    fun saveUser(username: String, surname: String): Either<ErrorApp, Boolean> {
+    fun saveUser(input: Input): Either<ErrorApp, Boolean> {
         /*val editor = sharedPref.edit()
         editor.putString("username", username)
         editor.putString("surname", surname)
@@ -22,8 +24,10 @@ class XmlLocalDataSource (private val context: Context){
         }*/
         return try {
             with(sharedPref.edit()){
-                putString("username", username)
-                putString("surname", surname)
+                putString("username", input.username)
+                putString("surname", input.surname)
+                putString("date", input.date)
+
                 apply()
             }
             true.right()
