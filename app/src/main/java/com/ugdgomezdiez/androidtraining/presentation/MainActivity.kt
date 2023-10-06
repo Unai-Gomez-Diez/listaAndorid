@@ -50,6 +50,7 @@ class MainActivity : AppCompatActivity() {
         val actionButton3 = findViewById<Button>(R.id.action_clean)
         actionButton3.setOnClickListener {
             viewModel.resetUser()
+            viewModel.loadUser()
         }
     }
 
