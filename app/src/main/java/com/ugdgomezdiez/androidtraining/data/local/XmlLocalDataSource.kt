@@ -35,10 +35,28 @@ class XmlLocalDataSource (private val context: Context){
                 sharedPref.getInt("id", 0),
                 sharedPref.getString("username", "")!!,
                 sharedPref.getString("surname", "")!!,
-                sharedPref.getString("age", "")!!
+                sharedPref.getString("date", "")!!
             ).right()
         } catch (ex: java.lang.Exception) {
             return ErrorApp.UnknowError.left()
         }
+    }
+
+    fun resetUser(input: SaveUserUseCase.Input): Either<ErrorApp, Boolean> {
+
+        return try {
+            with(sharedPref.edit()){
+                putString("username", "")
+                putString("surname", "")
+                putString("date", "")
+
+                apply()
+            }
+            true.right()
+        }catch (ex: Exception){
+            ErrorApp.UnknowError.left()
+        }
+
+
     }
 }

@@ -6,6 +6,7 @@ import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import com.ugdgomezdiez.androidtraining.app.ErrorApp
 import com.ugdgomezdiez.androidtraining.domain.GetUserUseCase
+import com.ugdgomezdiez.androidtraining.domain.ResetUserUseCase
 import com.ugdgomezdiez.androidtraining.domain.SaveUserUseCase
 import com.ugdgomezdiez.androidtraining.domain.User
 import kotlinx.coroutines.Dispatchers
@@ -13,7 +14,8 @@ import kotlinx.coroutines.launch
 
 class FormularioViewModel(
         private val saveUserUseCase: SaveUserUseCase,
-        private val getUserUseCase: GetUserUseCase
+        private val getUserUseCase: GetUserUseCase,
+        private val resetUserUseCase: ResetUserUseCase
     ) :ViewModel() {
 
     private val _uiState = MutableLiveData<UiState>()
@@ -33,6 +35,13 @@ class FormularioViewModel(
                 { responseGetUserSuccess(it) }
             )
         }
+    }
+
+    fun resetUser(){
+        resetUserUseCase(SaveUserUseCase.Input("","","")).fold(
+            { responseError(it) },
+            { responseSuccess(it) }
+        )
     }
 
     private fun responseError(errorApp: ErrorApp){

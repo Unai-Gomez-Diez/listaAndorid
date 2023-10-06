@@ -10,8 +10,10 @@ import com.ugdgomezdiez.androidtraining.R
 import com.ugdgomezdiez.androidtraining.data.UserDataRepository
 import com.ugdgomezdiez.androidtraining.data.local.XmlLocalDataSource
 import com.ugdgomezdiez.androidtraining.domain.GetUserUseCase
+import com.ugdgomezdiez.androidtraining.domain.ResetUserUseCase
 import com.ugdgomezdiez.androidtraining.domain.SaveUserUseCase
 import com.ugdgomezdiez.androidtraining.domain.User
+import com.ugdgomezdiez.androidtraining.domain.UserRepository
 
 class MainActivity : AppCompatActivity() {
 
@@ -19,7 +21,8 @@ class MainActivity : AppCompatActivity() {
     val viewModel: FormularioViewModel by lazy {
         FormularioViewModel(
             SaveUserUseCase(UserDataRepository(XmlLocalDataSource(this))),
-            GetUserUseCase(UserDataRepository(XmlLocalDataSource(this)))
+            GetUserUseCase(UserDataRepository(XmlLocalDataSource(this))),
+            ResetUserUseCase(UserDataRepository(XmlLocalDataSource(this)))
         )
     }
 
@@ -37,6 +40,16 @@ class MainActivity : AppCompatActivity() {
         val actionButton = findViewById<Button>(R.id.action_save)
         actionButton.setOnClickListener {
             viewModel.saveUser(getNameInput(),getSurnameInput(),getDateInput())
+        }
+
+        val actionButton2 = findViewById<Button>(R.id.action_get)
+        actionButton2.setOnClickListener {
+            viewModel.loadUser()
+        }
+
+        val actionButton3 = findViewById<Button>(R.id.action_clean)
+        actionButton3.setOnClickListener {
+            viewModel.resetUser()
         }
     }
 

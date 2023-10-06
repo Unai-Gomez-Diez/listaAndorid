@@ -7,4 +7,6 @@ interface UserRepository {
 
     fun save(input: SaveUserUseCase.Input): Either<ErrorApp, Boolean>
     fun obtain(): Either<ErrorApp, User>
+
+    fun reset(input: SaveUserUseCase.Input): Either<ErrorApp, Boolean>
 }
