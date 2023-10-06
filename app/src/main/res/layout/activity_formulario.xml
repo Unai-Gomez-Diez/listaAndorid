@@ -4,7 +4,6 @@
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
     android:layout_margin="10pt"
-    android:background="@color/material_on_surface_disabled"
     android:orientation="vertical"
     tools:context=".presentation.MainActivity">
 
