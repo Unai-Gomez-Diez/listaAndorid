@@ -31,7 +31,7 @@ class MainActivity : AppCompatActivity() {
         setContentView(R.layout.activity_formulario)
         setupView()
         setupObservers()
-        viewModel.loadUser()
+        //viewModel.loadUser()
     }
 
 

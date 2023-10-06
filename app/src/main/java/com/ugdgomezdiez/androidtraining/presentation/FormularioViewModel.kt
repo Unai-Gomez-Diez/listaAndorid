@@ -22,10 +22,13 @@ class FormularioViewModel(
     val uiState: LiveData<UiState> = _uiState
 
     fun saveUser(name: String, surname: String, date: String){
-        saveUserUseCase(SaveUserUseCase.Input(name, surname, date)).fold(
-            { responseError(it) },
-            { responseSuccess(it) }
-        )
+        viewModelScope.launch(Dispatchers.IO) {
+            saveUserUseCase(SaveUserUseCase.Input(name, surname, date)).fold(
+                { responseError(it) },
+                { responseSuccess(it) }
+            )
+        }
+
     }
 
     fun loadUser(){
@@ -38,10 +41,13 @@ class FormularioViewModel(
     }
 
     fun resetUser(){
-        resetUserUseCase(SaveUserUseCase.Input("","","")).fold(
-            { responseError(it) },
-            { responseSuccess(it) }
-        )
+        viewModelScope.launch(Dispatchers.IO) {
+            resetUserUseCase(SaveUserUseCase.Input("","","")).fold(
+                { responseError(it) },
+                { responseSuccess(it) }
+            )
+        }
+
     }
 
     private fun responseError(errorApp: ErrorApp){
