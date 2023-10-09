@@ -27,32 +27,57 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content" />
 
-    <TextView
+    <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+        xmlns:app="http://schemas.android.com/apk/res-auto"
+        xmlns:tools="http://schemas.android.com/tools"
         android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="@string/label_age" />
 
-    <EditText
-        android:id="@+id/input_age"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content" />
-
-    <Button
-        android:id="@+id/action_save"
-        android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:text="@string/action_save" />
+        android:orientation="horizontal"
 
-    <Button
-        android:id="@+id/action_get"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:text="@string/action_get" />
+        tools:context=".presentation.MainActivity">
 
-    <Button
-        android:id="@+id/action_clean"
-        android:layout_width="match_parent"
+
+        <Button
+            android:id="@+id/action_save"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="@string/action_save" />
+
+        <Button
+            android:id="@+id/action_get"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="@string/action_get" />
+
+    </LinearLayout>
+
+    <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+        xmlns:app="http://schemas.android.com/apk/res-auto"
+        xmlns:tools="http://schemas.android.com/tools"
+        android:layout_width="wrap_content"
+
         android:layout_height="wrap_content"
-        android:text="@string/action_clean" />
+        android:orientation="horizontal"
+
+        tools:context=".presentation.MainActivity">
+        <EditText
+            android:id="@+id/name"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/label_getName" />
+        <EditText
+            android:id="@+id/surname"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/label_getSurname" />
+
+        <Button
+            android:id="@+id/action_clean"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="@string/action_clean" />
+    </LinearLayout>
+
 
 </LinearLayout>

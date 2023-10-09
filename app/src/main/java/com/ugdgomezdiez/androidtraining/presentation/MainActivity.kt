@@ -2,10 +2,12 @@ package com.ugdgomezdiez.androidtraining.presentation
 
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
+import android.view.View
 import android.widget.Button
 import android.widget.EditText
 import androidx.activity.viewModels
 import androidx.lifecycle.Observer
+import androidx.lifecycle.VIEW_MODEL_STORE_OWNER_KEY
 import com.ugdgomezdiez.androidtraining.R
 import com.ugdgomezdiez.androidtraining.data.UserDataRepository
 import com.ugdgomezdiez.androidtraining.data.local.XmlLocalDataSource
@@ -31,6 +33,12 @@ class MainActivity : AppCompatActivity() {
         setContentView(R.layout.activity_formulario)
         setupView()
         setupObservers()
+        val editText = findViewById<EditText>(R.id.name)
+        editText.visibility = View.INVISIBLE
+        val editText2 = findViewById<EditText>(R.id.surname)
+        editText2.visibility = View.INVISIBLE
+        val myButton = findViewById<Button>(R.id.action_clean)
+        myButton.visibility = View.INVISIBLE
         //viewModel.loadUser()
     }
 
@@ -39,18 +47,33 @@ class MainActivity : AppCompatActivity() {
         //poner uno para recuperar
         val actionButton = findViewById<Button>(R.id.action_save)
         actionButton.setOnClickListener {
-            viewModel.saveUser(getNameInput(),getSurnameInput(),getDateInput())
+            viewModel.saveUser(getNameInput(),getSurnameInput())
+            viewModel.loadUser()
+            val editText = findViewById<EditText>(R.id.name)
+            editText.visibility = View.VISIBLE
+            val editText2 = findViewById<EditText>(R.id.surname)
+            editText2.visibility = View.VISIBLE
+            val myButton = findViewById<Button>(R.id.action_clean)
+            myButton.visibility = View.VISIBLE
         }
 
         val actionButton2 = findViewById<Button>(R.id.action_get)
         actionButton2.setOnClickListener {
-            viewModel.loadUser()
+            findViewById<EditText>(R.id.input_name).setText("")
+            findViewById<EditText>(R.id.input_surname).setText("")
         }
 
         val actionButton3 = findViewById<Button>(R.id.action_clean)
         actionButton3.setOnClickListener {
             viewModel.resetUser()
-            viewModel.loadUser()
+
+            val editText = findViewById<EditText>(R.id.name)
+            editText.visibility = View.INVISIBLE
+            val editText2 = findViewById<EditText>(R.id.surname)
+            editText2.visibility = View.INVISIBLE
+            val myButton = findViewById<Button>(R.id.action_clean)
+            myButton.visibility = View.INVISIBLE
+
         }
     }
 
@@ -61,8 +84,7 @@ class MainActivity : AppCompatActivity() {
    private fun getSurnameInput(): String=
         findViewById<EditText>(R.id.input_surname).text.toString()
 
-   private fun getDateInput(): String=
-       findViewById<EditText>(R.id.input_age).text.toString()
+
 
     private fun setupObservers() {
         val observer = Observer<FormularioViewModel.UiState> {
@@ -77,18 +99,16 @@ class MainActivity : AppCompatActivity() {
     private fun bindData(user: User) {
         setNameInput(user.username)
         setSurnameInput(user.surname)
-        setAgeInput(user.age)
+
     }
 
     private fun setNameInput(name: String) {
-        findViewById<EditText>(R.id.input_name).setText(name)
+        findViewById<EditText>(R.id.name).setText(name)
     }
 
     private fun setSurnameInput(surname: String) {
-        findViewById<EditText>(R.id.input_surname).setText(surname)
+        findViewById<EditText>(R.id.surname).setText(surname)
     }
 
-    private fun setAgeInput(age: String) {
-        findViewById<EditText>(R.id.input_age).setText(age)
-    }
+
 }

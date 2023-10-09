@@ -18,7 +18,6 @@ class XmlLocalDataSource (private val context: Context){
             with(sharedPref.edit()){
                 putString("username", input.username)
                 putString("surname", input.surname)
-                putString("date", input.age)
 
                 apply()
             }
@@ -34,8 +33,7 @@ class XmlLocalDataSource (private val context: Context){
             User(
                 sharedPref.getInt("id", 0),
                 sharedPref.getString("username", "")!!,
-                sharedPref.getString("surname", "")!!,
-                sharedPref.getString("date", "")!!
+                sharedPref.getString("surname", "")!!
             ).right()
         } catch (ex: java.lang.Exception) {
             return ErrorApp.UnknowError.left()
@@ -48,7 +46,6 @@ class XmlLocalDataSource (private val context: Context){
             with(sharedPref.edit()){
                 putString("username", "")
                 putString("surname", "")
-                putString("date", "")
 
                 apply()
             }

@@ -5,7 +5,9 @@
     <string name="label_date_born">Fecha nacimiento</string>
     <string name="label_age">Edad</string>
     <string name="action_save">Guardar</string>
-    <string name="action_get">Recuperar</string>
-    <string name="action_clean">Limpiar</string>
+    <string name="action_get">Limpiar</string>
+    <string name="action_clean">Borrar</string>
+    <string name="label_getName">nombre</string>
+    <string name="label_getSurname">apellido</string>
 
 </resources>
