@@ -1,4 +1,4 @@
-package com.ugdgomezdiez.androidtraining.domain
+package com.ugdgomezdiez.androidtraining.features.ex01.domain
 
 import com.iesam.kotlintrainning.Either
 import com.ugdgomezdiez.androidtraining.app.ErrorApp

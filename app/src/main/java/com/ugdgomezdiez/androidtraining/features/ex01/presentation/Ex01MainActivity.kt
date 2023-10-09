@@ -1,27 +1,24 @@
-package com.ugdgomezdiez.androidtraining.presentation
+package com.ugdgomezdiez.androidtraining.features.ex01.presentation
 
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.view.View
 import android.widget.Button
 import android.widget.EditText
-import androidx.activity.viewModels
 import androidx.lifecycle.Observer
-import androidx.lifecycle.VIEW_MODEL_STORE_OWNER_KEY
 import com.ugdgomezdiez.androidtraining.R
-import com.ugdgomezdiez.androidtraining.data.UserDataRepository
-import com.ugdgomezdiez.androidtraining.data.local.XmlLocalDataSource
-import com.ugdgomezdiez.androidtraining.domain.GetUserUseCase
-import com.ugdgomezdiez.androidtraining.domain.ResetUserUseCase
-import com.ugdgomezdiez.androidtraining.domain.SaveUserUseCase
-import com.ugdgomezdiez.androidtraining.domain.User
-import com.ugdgomezdiez.androidtraining.domain.UserRepository
+import com.ugdgomezdiez.androidtraining.features.ex01.data.UserDataRepository
+import com.ugdgomezdiez.androidtraining.features.ex01.data.local.XmlLocalDataSource
+import com.ugdgomezdiez.androidtraining.features.ex01.domain.GetUserUseCase
+import com.ugdgomezdiez.androidtraining.features.ex01.domain.ResetUserUseCase
+import com.ugdgomezdiez.androidtraining.features.ex01.domain.SaveUserUseCase
+import com.ugdgomezdiez.androidtraining.features.ex01.domain.User
 
-class MainActivity : AppCompatActivity() {
+class Ex01MainActivity : AppCompatActivity() {
 
     //val viewModels: FormularioViewModel by viewModels()
-    val viewModel: FormularioViewModel by lazy {
-        FormularioViewModel(
+    val viewModel: Ex01FormularioViewModel by lazy {
+        Ex01FormularioViewModel(
             SaveUserUseCase(UserDataRepository(XmlLocalDataSource(this))),
             GetUserUseCase(UserDataRepository(XmlLocalDataSource(this))),
             ResetUserUseCase(UserDataRepository(XmlLocalDataSource(this)))
@@ -87,7 +84,7 @@ class MainActivity : AppCompatActivity() {
 
 
     private fun setupObservers() {
-        val observer = Observer<FormularioViewModel.UiState> {
+        val observer = Observer<Ex01FormularioViewModel.UiState> {
             //Código al notificar el observador
             it.user?.apply {
                 bindData(this)

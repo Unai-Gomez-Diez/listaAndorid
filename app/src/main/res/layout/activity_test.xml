@@ -8,7 +8,7 @@
     android:layout_height="wrap_content"
     android:orientation="horizontal"
 
-    tools:context=".presentation.MainActivity">
+    tools:context=".features.ex01.presentation.Ex01MainActivity">
 
     <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
         xmlns:app="http://schemas.android.com/apk/res-auto"
@@ -20,7 +20,7 @@
         android:orientation="horizontal"
         android:layout_margin="10dp"
 
-        tools:context=".presentation.MainActivity">
+        tools:context=".features.ex01.presentation.Ex01MainActivity">
         <ImageView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
@@ -39,7 +39,7 @@
         android:layout_height="wrap_content"
         android:orientation="vertical"
         android:layout_margin="10dp"
-        tools:context=".presentation.MainActivity">
+        tools:context=".features.ex01.presentation.Ex01MainActivity">
 
         <TextView
             android:layout_width="wrap_content"

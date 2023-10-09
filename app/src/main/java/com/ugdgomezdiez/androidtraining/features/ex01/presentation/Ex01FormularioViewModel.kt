@@ -1,21 +1,21 @@
-package com.ugdgomezdiez.androidtraining.presentation
+package com.ugdgomezdiez.androidtraining.features.ex01.presentation
 
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import com.ugdgomezdiez.androidtraining.app.ErrorApp
-import com.ugdgomezdiez.androidtraining.domain.GetUserUseCase
-import com.ugdgomezdiez.androidtraining.domain.ResetUserUseCase
-import com.ugdgomezdiez.androidtraining.domain.SaveUserUseCase
-import com.ugdgomezdiez.androidtraining.domain.User
+import com.ugdgomezdiez.androidtraining.features.ex01.domain.GetUserUseCase
+import com.ugdgomezdiez.androidtraining.features.ex01.domain.ResetUserUseCase
+import com.ugdgomezdiez.androidtraining.features.ex01.domain.SaveUserUseCase
+import com.ugdgomezdiez.androidtraining.features.ex01.domain.User
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
 
-class FormularioViewModel(
-        private val saveUserUseCase: SaveUserUseCase,
-        private val getUserUseCase: GetUserUseCase,
-        private val resetUserUseCase: ResetUserUseCase
+class Ex01FormularioViewModel(
+    private val saveUserUseCase: SaveUserUseCase,
+    private val getUserUseCase: GetUserUseCase,
+    private val resetUserUseCase: ResetUserUseCase
     ) :ViewModel() {
 
     private val _uiState = MutableLiveData<UiState>()

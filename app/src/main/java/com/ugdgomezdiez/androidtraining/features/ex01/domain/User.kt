@@ -1,3 +1,3 @@
-package com.ugdgomezdiez.androidtraining.domain
+package com.ugdgomezdiez.androidtraining.features.ex01.domain
 
 data class User(val id: Int, val username: String, val surname: String)

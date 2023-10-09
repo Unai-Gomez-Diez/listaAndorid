@@ -1,12 +1,12 @@
-package com.ugdgomezdiez.androidtraining.data
+package com.ugdgomezdiez.androidtraining.features.ex01.data
 
 import com.iesam.kotlintrainning.Either
 import com.ugdgomezdiez.androidtraining.app.ErrorApp
-import com.ugdgomezdiez.androidtraining.data.local.XmlLocalDataSource
+import com.ugdgomezdiez.androidtraining.features.ex01.data.local.XmlLocalDataSource
 
-import com.ugdgomezdiez.androidtraining.domain.SaveUserUseCase
-import com.ugdgomezdiez.androidtraining.domain.User
-import com.ugdgomezdiez.androidtraining.domain.UserRepository
+import com.ugdgomezdiez.androidtraining.features.ex01.domain.SaveUserUseCase
+import com.ugdgomezdiez.androidtraining.features.ex01.domain.User
+import com.ugdgomezdiez.androidtraining.features.ex01.domain.UserRepository
 
 class UserDataRepository(private val localDataSource: XmlLocalDataSource) : UserRepository {
     override fun save(input: SaveUserUseCase.Input): Either<ErrorApp, Boolean> {

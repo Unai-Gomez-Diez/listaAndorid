@@ -1,4 +1,4 @@
-package com.ugdgomezdiez.androidtraining.data.local
+package com.ugdgomezdiez.androidtraining.features.ex01.data.local
 
 import android.content.Context
 import com.google.gson.Gson
@@ -7,8 +7,8 @@ import com.iesam.kotlintrainning.left
 import com.iesam.kotlintrainning.right
 import com.ugdgomezdiez.androidtraining.app.ErrorApp
 
-import com.ugdgomezdiez.androidtraining.domain.SaveUserUseCase
-import com.ugdgomezdiez.androidtraining.domain.User
+import com.ugdgomezdiez.androidtraining.features.ex01.domain.SaveUserUseCase
+import com.ugdgomezdiez.androidtraining.features.ex01.domain.User
 
 class XmlLocalDataSource (private val context: Context){
     val sharedPref = context.getSharedPreferences("users", Context.MODE_PRIVATE)
