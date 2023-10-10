@@ -156,7 +156,7 @@ class Ex01MainActivity : AppCompatActivity() {
             myButton.visibility = View.INVISIBLE
 
         }
-        val actionButton7 = findViewById<Button>(R.id.action_clean4)
+        val actionButton7 = findViewById<Button>(R.id.action_clean5)
         actionButton7.setOnClickListener {
             viewModel.resetUser()
 
