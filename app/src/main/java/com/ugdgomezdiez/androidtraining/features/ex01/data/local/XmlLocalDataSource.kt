@@ -16,7 +16,7 @@ class XmlLocalDataSource (private val context: Context){
     private val gson = Gson()
 
     init {
-        sharedPref.edit().remove("users").commit()
+        sharedPref.edit().remove("users").apply()
     }
     fun saveUser(input: SaveUserUseCase.Input): Either<ErrorApp, Boolean> {
 
@@ -38,10 +38,10 @@ class XmlLocalDataSource (private val context: Context){
     fun findUser(userId: Int): Either<ErrorApp, User> {
         return try {
             val jsonUser = sharedPref.getString(userId.toString(),"{}")
-            return gson.fromJson(jsonUser, User::class.java).right()
+            gson.fromJson(jsonUser, User::class.java).right()
 
         } catch (ex: java.lang.Exception) {
-            return ErrorApp.UnknowError.left()
+            ErrorApp.UnknowError.left()
         }
     }
 
