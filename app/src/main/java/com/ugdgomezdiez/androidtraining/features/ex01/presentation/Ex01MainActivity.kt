@@ -72,6 +72,42 @@ class Ex01MainActivity : AppCompatActivity() {
 
 
         }
+        val actionButton4 = findViewById<ViewGroup>(R.id.row_2).findViewById<Button>(R.id.action_clean)
+        actionButton4.setOnClickListener {
+            viewModel.resetUser()
+
+            val viewGroup = findViewById<ViewGroup>(R.id.row_2)
+            viewGroup.visibility=View.GONE
+
+
+        }
+        val actionButton5 = findViewById<ViewGroup>(R.id.row_3).findViewById<Button>(R.id.action_clean)
+        actionButton5.setOnClickListener {
+            viewModel.resetUser()
+
+            val viewGroup = findViewById<ViewGroup>(R.id.row_3)
+            viewGroup.visibility=View.GONE
+
+
+        }
+        val actionButton6 = findViewById<ViewGroup>(R.id.row_4).findViewById<Button>(R.id.action_clean)
+        actionButton6.setOnClickListener {
+            viewModel.resetUser()
+
+            val viewGroup = findViewById<ViewGroup>(R.id.row_4)
+            viewGroup.visibility=View.GONE
+
+
+        }
+        val actionButton7 = findViewById<ViewGroup>(R.id.row_5).findViewById<Button>(R.id.action_clean)
+        actionButton7.setOnClickListener {
+            viewModel.resetUser()
+
+            val viewGroup = findViewById<ViewGroup>(R.id.row_5)
+            viewGroup.visibility=View.GONE
+
+
+        }
 
     }
 
