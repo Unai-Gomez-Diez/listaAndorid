@@ -76,6 +76,30 @@ class Ex01MainActivity : AppCompatActivity() {
             editText2.visibility = View.VISIBLE
             val myButton = findViewById<Button>(R.id.action_clean)
             myButton.visibility = View.VISIBLE
+            val editText3 = findViewById<EditText>(R.id.name2)
+            editText3.visibility = View.VISIBLE
+            val editText4 = findViewById<EditText>(R.id.surname2)
+            editText4.visibility = View.VISIBLE
+            val myButton2 = findViewById<Button>(R.id.action_clean2)
+            myButton2.visibility = View.VISIBLE
+            val editText5 = findViewById<EditText>(R.id.name3)
+            editText5.visibility = View.VISIBLE
+            val editText6 = findViewById<EditText>(R.id.surname3)
+            editText6.visibility = View.VISIBLE
+            val myButton3 = findViewById<Button>(R.id.action_clean3)
+            myButton3.visibility = View.VISIBLE
+            val editText7 = findViewById<EditText>(R.id.name4)
+            editText7.visibility = View.VISIBLE
+            val editText8 = findViewById<EditText>(R.id.surname4)
+            editText8.visibility = View.VISIBLE
+            val myButton4 = findViewById<Button>(R.id.action_clean4)
+            myButton4.visibility = View.VISIBLE
+            val editText9 = findViewById<EditText>(R.id.name5)
+            editText9.visibility = View.VISIBLE
+            val editText10 = findViewById<EditText>(R.id.surname5)
+            editText10.visibility = View.VISIBLE
+            val myButton5 = findViewById<Button>(R.id.action_clean5)
+            myButton5.visibility = View.VISIBLE
         }
 
         val actionButton2 = findViewById<Button>(R.id.action_get)
