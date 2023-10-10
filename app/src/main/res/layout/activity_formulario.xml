@@ -14,6 +14,8 @@
 
     <EditText
         android:id="@+id/input_name"
+        android:textSize="45dp"
+        android:text="@string/label_name"
         android:layout_width="match_parent"
         android:layout_height="wrap_content" />
 
@@ -24,6 +26,8 @@
 
     <EditText
         android:id="@+id/input_surname"
+        android:textSize="45dp"
+        android:text="@string/label_surname"
         android:layout_width="match_parent"
         android:layout_height="wrap_content" />
 
@@ -52,15 +56,14 @@
 
     </LinearLayout>
 
-    <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
-        xmlns:app="http://schemas.android.com/apk/res-auto"
-        xmlns:tools="http://schemas.android.com/tools"
+    <LinearLayout
         android:layout_width="wrap_content"
 
         android:layout_height="wrap_content"
         android:orientation="horizontal"
 
         tools:context=".features.ex01.presentation.Ex01MainActivity">
+
         <TextView
 
             android:layout_width="wrap_content"
@@ -75,11 +78,25 @@
 
     </LinearLayout>
 
-    <include android:id="@+id/row_1" layout="@layout/view_row_list"></include>
-    <include android:id="@+id/row_2" layout="@layout/view_row_list"></include>
-    <include android:id="@+id/row_3" layout="@layout/view_row_list"></include>
-    <include android:id="@+id/row_4" layout="@layout/view_row_list"></include>
-    <include android:id="@+id/row_5" layout="@layout/view_row_list"></include>
+    <include
+        android:id="@+id/row_1"
+        layout="@layout/view_row_list" />
+
+    <include
+        android:id="@+id/row_2"
+        layout="@layout/view_row_list" />
+
+    <include
+        android:id="@+id/row_3"
+        layout="@layout/view_row_list" />
+
+    <include
+        android:id="@+id/row_4"
+        layout="@layout/view_row_list" />
+
+    <include
+        android:id="@+id/row_5"
+        layout="@layout/view_row_list" />
 
 
 
