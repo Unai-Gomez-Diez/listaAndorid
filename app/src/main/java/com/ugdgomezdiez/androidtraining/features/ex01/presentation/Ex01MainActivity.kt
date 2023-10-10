@@ -36,6 +36,30 @@ class Ex01MainActivity : AppCompatActivity() {
         editText2.visibility = View.INVISIBLE
         val myButton = findViewById<Button>(R.id.action_clean)
         myButton.visibility = View.INVISIBLE
+        val editText3 = findViewById<EditText>(R.id.name2)
+        editText3.visibility = View.INVISIBLE
+        val editText4 = findViewById<EditText>(R.id.surname2)
+        editText4.visibility = View.INVISIBLE
+        val myButton2 = findViewById<Button>(R.id.action_clean2)
+        myButton2.visibility = View.INVISIBLE
+        val editText5 = findViewById<EditText>(R.id.name3)
+        editText5.visibility = View.INVISIBLE
+        val editText6 = findViewById<EditText>(R.id.surname3)
+        editText6.visibility = View.INVISIBLE
+        val myButton3 = findViewById<Button>(R.id.action_clean3)
+        myButton3.visibility = View.INVISIBLE
+        val editText7 = findViewById<EditText>(R.id.name4)
+        editText7.visibility = View.INVISIBLE
+        val editText8 = findViewById<EditText>(R.id.surname4)
+        editText8.visibility = View.INVISIBLE
+        val myButton4 = findViewById<Button>(R.id.action_clean4)
+        myButton4.visibility = View.INVISIBLE
+        val editText9 = findViewById<EditText>(R.id.name5)
+        editText9.visibility = View.INVISIBLE
+        val editText10 = findViewById<EditText>(R.id.surname5)
+        editText10.visibility = View.INVISIBLE
+        val myButton5 = findViewById<Button>(R.id.action_clean5)
+        myButton5.visibility = View.INVISIBLE
         //viewModel.loadUser()
     }
 
@@ -69,6 +93,54 @@ class Ex01MainActivity : AppCompatActivity() {
             val editText2 = findViewById<EditText>(R.id.surname)
             editText2.visibility = View.INVISIBLE
             val myButton = findViewById<Button>(R.id.action_clean)
+            myButton.visibility = View.INVISIBLE
+
+        }
+        val actionButton4 = findViewById<Button>(R.id.action_clean2)
+        actionButton4.setOnClickListener {
+            viewModel.resetUser()
+
+            val editText = findViewById<EditText>(R.id.name2)
+            editText.visibility = View.INVISIBLE
+            val editText2 = findViewById<EditText>(R.id.surname2)
+            editText2.visibility = View.INVISIBLE
+            val myButton = findViewById<Button>(R.id.action_clean2)
+            myButton.visibility = View.INVISIBLE
+
+        }
+        val actionButton5 = findViewById<Button>(R.id.action_clean3)
+        actionButton5.setOnClickListener {
+            viewModel.resetUser()
+
+            val editText = findViewById<EditText>(R.id.name3)
+            editText.visibility = View.INVISIBLE
+            val editText2 = findViewById<EditText>(R.id.surname3)
+            editText2.visibility = View.INVISIBLE
+            val myButton = findViewById<Button>(R.id.action_clean3)
+            myButton.visibility = View.INVISIBLE
+
+        }
+        val actionButton6 = findViewById<Button>(R.id.action_clean4)
+        actionButton6.setOnClickListener {
+            viewModel.resetUser()
+
+            val editText = findViewById<EditText>(R.id.name4)
+            editText.visibility = View.INVISIBLE
+            val editText2 = findViewById<EditText>(R.id.surname4)
+            editText2.visibility = View.INVISIBLE
+            val myButton = findViewById<Button>(R.id.action_clean4)
+            myButton.visibility = View.INVISIBLE
+
+        }
+        val actionButton7 = findViewById<Button>(R.id.action_clean4)
+        actionButton7.setOnClickListener {
+            viewModel.resetUser()
+
+            val editText = findViewById<EditText>(R.id.name5)
+            editText.visibility = View.INVISIBLE
+            val editText2 = findViewById<EditText>(R.id.surname5)
+            editText2.visibility = View.INVISIBLE
+            val myButton = findViewById<Button>(R.id.action_clean5)
             myButton.visibility = View.INVISIBLE
 
         }
