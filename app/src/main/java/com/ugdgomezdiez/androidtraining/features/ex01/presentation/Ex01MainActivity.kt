@@ -9,6 +9,7 @@ import android.widget.EditText
 import android.widget.TextView
 import androidx.lifecycle.Observer
 import com.ugdgomezdiez.androidtraining.R
+import com.ugdgomezdiez.androidtraining.databinding.ActivityFormularioBinding
 import com.ugdgomezdiez.androidtraining.features.ex01.data.UserDataRepository
 import com.ugdgomezdiez.androidtraining.features.ex01.data.local.XmlLocalDataSource
 import com.ugdgomezdiez.androidtraining.features.ex01.domain.GetUserUseCase
@@ -17,6 +18,9 @@ import com.ugdgomezdiez.androidtraining.features.ex01.domain.SaveUserUseCase
 import com.ugdgomezdiez.androidtraining.features.ex01.domain.User
 
 class Ex01MainActivity : AppCompatActivity() {
+
+
+    lateinit var binding: ActivityFormularioBinding
 
     //val viewModels: FormularioViewModel by viewModels()
     val viewModel: Ex01FormularioViewModel by lazy {
@@ -29,6 +33,7 @@ class Ex01MainActivity : AppCompatActivity() {
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
+        bindView()
         setContentView(R.layout.activity_formulario)
         setupView()
         setupObservers()
@@ -45,6 +50,13 @@ class Ex01MainActivity : AppCompatActivity() {
 
         //viewModel.loadUser()
     }
+
+    private fun bindView(){
+        binding = ActivityFormularioBinding.inflate(layoutInflater)
+        val view = binding.root
+        setContentView(view)
+    }
+
 
 
     private fun setupView(){

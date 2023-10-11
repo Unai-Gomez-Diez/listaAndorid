@@ -18,4 +18,5 @@ class MainActivity : AppCompatActivity() {
             startActivity(Intent(this, Ex01MainActivity::class.java))
         }
     }
+
 }
