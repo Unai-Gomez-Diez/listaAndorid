@@ -6,15 +6,12 @@ import com.iesam.kotlintrainning.left
 import com.iesam.kotlintrainning.right
 import com.ugdgomezdiez.androidtraining.app.ErrorApp
 import com.ugdgomezdiez.androidtraining.features.ex02.domain.Dog
-import com.ugdgomezdiez.androidtraining.features.ex02.domain.SaveDogUseCase
-import java.time.LocalDate
-import java.time.format.DateTimeFormatter
 import java.util.Date
 
 class XmlLocalDataSource (private val context: Context){
     val sharedPref = context.getSharedPreferences("dog", Context.MODE_PRIVATE)
 
-    fun setDog(input: SaveDogUseCase.Input):Either<ErrorApp,Boolean>{
+    fun setDog(input: Dog):Either<ErrorApp,Boolean>{
         return try {
             with(sharedPref.edit()){
                 putString("name",input.name)
