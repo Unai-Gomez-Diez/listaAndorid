@@ -15,13 +15,13 @@
         android:src="@drawable/ic_perro" />
 
     <TextView
-        android:id="@+id/nombredog"
+        android:id="@+id/nombre_dog"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:text=""/>
 
     <TextView
-        android:id="@+id/descripciondog"
+        android:id="@+id/descripcion_dog"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:text=""/>
@@ -37,7 +37,7 @@
             android:src="@drawable/hembra"/>
 
         <TextView
-            android:id="@+id/sexdog"
+            android:id="@+id/sex_dog"
             android:layout_width="wrap_content"
             android:layout_height="match_parent"
             android:text=""/>
@@ -49,7 +49,7 @@
             />
 
         <TextView
-            android:id="@+id/dateborndog"
+            android:id="@+id/dateborn_dog"
             android:layout_width="wrap_content"
             android:layout_height="match_parent"
             android:text=""/>

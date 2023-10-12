@@ -32,7 +32,7 @@ class Ex02PerroViewModel(private val getDogUseCase: GetDogUseCase,
 
     }
 
-    fun loadUser(){
+    fun loadDog(){
         viewModelScope.launch(Dispatchers.IO) {
             getDogUseCase().fold(
                 { responseError(it) },
