@@ -24,7 +24,9 @@ class DogDataRepository(
         }
     }
 
-    override fun saveDog(input: SaveDogUseCase.Input): Either<ErrorApp, Dog> {
+
+
+    override fun saveDog(): Either<ErrorApp, Boolean> {
         return apiSource.getDogMock()
     }
 }

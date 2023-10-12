@@ -5,5 +5,5 @@ import com.ugdgomezdiez.androidtraining.app.ErrorApp
 
 interface DogRepository {
     fun findDog(): Either<ErrorApp, Dog>
-    fun saveDog(input: SaveDogUseCase.Input): Either<ErrorApp, Boolean>
+    fun saveDog(): Either<ErrorApp, Boolean>
 }
