@@ -9,11 +9,11 @@ import com.ugdgomezdiez.androidtraining.features.ex02.domain.Dog
 import com.ugdgomezdiez.androidtraining.features.ex02.domain.SaveDogUseCase
 import java.util.Date
 
-class ApiMockRemoteDataSource (private val context: Context){
-    val sharedPref = context.getSharedPreferences("dog", Context.MODE_PRIVATE)
+class ApiMockRemoteDataSource (){
+  //  val sharedPref = context.getSharedPreferences("dog", Context.MODE_PRIVATE)
 
-    fun getDogMock(): Either<ErrorApp,Boolean>{
-        return try {
+    fun getDogMock(): Either<ErrorApp, Dog>{
+       /* return try {
             with(sharedPref.edit()){
                 putString("name", "Rami")
                 putString("descripcion", "Un diamante por pulir")
@@ -26,9 +26,15 @@ class ApiMockRemoteDataSource (private val context: Context){
         }catch (ex: Exception){
             ErrorApp.UnknowError.left()
         }
+*/
+
+try{
+    return Dog("Rami","Un diamante por pulir","hembra", Date()).right()
+} catch (e: Exception) {
+    return ErrorApp.UnknowError.left()
+}
 
 
-    // return Dog("Rami","Un diamante por pulir","hembra", Date()).right()
     }
 
 }

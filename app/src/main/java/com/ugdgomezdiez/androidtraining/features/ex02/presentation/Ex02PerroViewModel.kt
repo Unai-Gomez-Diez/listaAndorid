@@ -23,7 +23,7 @@ class Ex02PerroViewModel(private val getDogUseCase: GetDogUseCase,
 
     fun saveDog(){
         viewModelScope.launch(Dispatchers.IO) {
-            saveDogUseCase(SaveDogUseCase.Input("","","", Date(20-20-2000))).fold(
+            saveDogUseCase().fold(
                 { responseError(it) },
                 { responseSuccess(it) }
             )

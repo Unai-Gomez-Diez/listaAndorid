@@ -1,6 +1,7 @@
 package com.ugdgomezdiez.androidtraining.features.ex02.data
 
 import com.iesam.kotlintrainning.Either
+import com.iesam.kotlintrainning.right
 import com.ugdgomezdiez.androidtraining.app.ErrorApp
 import com.ugdgomezdiez.androidtraining.features.ex02.data.local.XmlLocalDataSource
 import com.ugdgomezdiez.androidtraining.features.ex02.data.remote.ApiMockRemoteDataSource
@@ -27,7 +28,8 @@ class DogDataRepository(
 
 
     override fun saveDog(): Either<ErrorApp, Boolean> {
-        return apiSource.getDogMock()
+        apiSource.getDogMock()
+        return true.right()
     }
 }
 
