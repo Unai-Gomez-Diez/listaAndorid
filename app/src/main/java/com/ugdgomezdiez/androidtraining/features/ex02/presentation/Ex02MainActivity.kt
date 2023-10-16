@@ -5,6 +5,7 @@ import android.os.Bundle
 import android.widget.EditText
 import android.widget.TextView
 import androidx.appcompat.app.AppCompatActivity
+import androidx.lifecycle.Observer
 import com.ugdgomezdiez.androidtraining.R
 import com.ugdgomezdiez.androidtraining.features.ex02.data.DogDataRepository
 import com.ugdgomezdiez.androidtraining.features.ex02.data.local.XmlLocalDataSource
@@ -31,6 +32,16 @@ class Ex02MainActivity : AppCompatActivity(){
 
     private fun setupView(){
         viewModel.loadDog()
+        setupObservers()
+    }
+    private fun setupObservers() {
+        val observer = Observer<Ex02PerroViewModel.UiState> {
+            //Código al notificar el observador
+            it.dog?.apply {
+                bindData(this)
+            }
+        }
+        viewModel.uiState.observe(this, observer)
     }
 
 

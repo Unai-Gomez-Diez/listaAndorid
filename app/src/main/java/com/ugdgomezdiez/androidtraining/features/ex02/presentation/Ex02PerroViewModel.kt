@@ -21,16 +21,7 @@ class Ex02PerroViewModel(private val getDogUseCase: GetDogUseCase,
     private val _uiState = MutableLiveData<Ex02PerroViewModel.UiState>()
     val uiState: LiveData<Ex02PerroViewModel.UiState> = _uiState
 
-    fun saveDog(){
-        viewModelScope.launch(Dispatchers.IO) {
-            saveDogUseCase().fold(
-                { responseError(it) },
-                { responseSuccess(it) }
-            )
 
-        }
-
-    }
 
     fun loadDog(){
         viewModelScope.launch(Dispatchers.IO) {

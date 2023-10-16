@@ -17,6 +17,10 @@
             android:exported="true"/>
 
         <activity
+            android:name=".features.ex02.presentation.Ex02MainActivity"
+            android:exported="true"/>
+
+        <activity
             android:name=".features.MainActivity"
             android:exported="true" >
             <intent-filter>

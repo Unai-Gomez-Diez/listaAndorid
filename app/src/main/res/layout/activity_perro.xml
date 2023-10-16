@@ -7,54 +7,82 @@
     android:orientation="vertical"
     tools:context=".features.ex01.presentation.Ex01MainActivity">
 
-
     <ImageView
         android:layout_width="wrap_content"
         android:layout_height="200dp"
 
         android:src="@drawable/ic_perro" />
 
-    <TextView
-        android:id="@+id/nombre_dog"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:text=""/>
-
-    <TextView
-        android:id="@+id/descripcion_dog"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:text=""/>
-
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:orientation="horizontal">
-
-        <ImageView
-            android:layout_width="30dp"
-            android:layout_height="30dp"
-            android:src="@drawable/hembra"/>
-
+        android:orientation="vertical"
+        android:layout_marginStart="25dp"
+        android:layout_marginEnd="25dp">
         <TextView
-            android:id="@+id/sex_dog"
-            android:layout_width="wrap_content"
-            android:layout_height="match_parent"
+            android:id="@+id/nombre_dog"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
             android:text=""/>
 
-        <ImageView
-            android:layout_width="30dp"
-            android:layout_height="30dp"
-            android:src="@drawable/tarta"
-            />
-
         <TextView
-            android:id="@+id/dateborn_dog"
-            android:layout_width="wrap_content"
-            android:layout_height="match_parent"
+            android:id="@+id/descripcion_dog"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
             android:text=""/>
 
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal">
+
+            <ImageView
+                android:layout_width="25dp"
+                android:layout_height="25dp"
+                android:src="@drawable/hembra"/>
+
+            <TextView
+                android:id="@+id/sex_dog"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text=""/>
+
+            <ImageView
+                android:layout_width="25dp"
+                android:layout_height="25dp"
+                android:src="@drawable/tarta"
+                />
+
+            <TextView
+                android:id="@+id/dateborn_dog"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text=""/>
+             <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal">
+
+                 <ImageView
+                     android:layout_width="25dp"
+                     android:layout_height="25dp"
+
+                     android:layout_alignParentEnd="true"
+                     android:layout_marginEnd="50dp"
+                     android:src="@drawable/share" />
+
+                 <ImageView
+                     android:layout_width="25dp"
+                     android:layout_height="25dp"
+                     android:layout_alignParentEnd="true"
+                     android:layout_gravity="center_vertical"
+                     android:src="@drawable/likeheart" />
+             </RelativeLayout>
+        </LinearLayout>
     </LinearLayout>
+
+
+
 
 
 

@@ -6,6 +6,7 @@ import android.os.Bundle
 import android.widget.Button
 import com.ugdgomezdiez.androidtraining.R
 import com.ugdgomezdiez.androidtraining.features.ex01.presentation.Ex01MainActivity
+import com.ugdgomezdiez.androidtraining.features.ex02.presentation.Ex02MainActivity
 
 class MainActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -16,6 +17,9 @@ class MainActivity : AppCompatActivity() {
     private fun setupView(){
         findViewById<Button>(R.id.action_ex01).setOnClickListener{
             startActivity(Intent(this, Ex01MainActivity::class.java))
+        }
+        findViewById<Button>(R.id.action_ex02).setOnClickListener{
+            startActivity(Intent(this, Ex02MainActivity::class.java))
         }
     }
 
