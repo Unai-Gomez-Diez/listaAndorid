@@ -51,6 +51,10 @@ dependencies {
     def lifecycle_version = "2.6.2"
     //libreria para serializacion
     implementation 'com.google.code.gson:gson:2.10.1'
+    implementation("com.github.bumptech.glide:glide:4.16.0")
+
+
+    implementation ("com.faltenreich:skeletonlayout:5.0.0")
     implementation("androidx.lifecycle:lifecycle-viewmodel-ktx:$lifecycle_version")
     testImplementation 'junit:junit:4.13.2'
     androidTestImplementation 'androidx.test.ext:junit:1.1.5'

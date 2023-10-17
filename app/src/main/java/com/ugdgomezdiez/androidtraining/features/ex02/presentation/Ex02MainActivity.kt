@@ -6,7 +6,10 @@ import android.widget.EditText
 import android.widget.TextView
 import androidx.appcompat.app.AppCompatActivity
 import androidx.lifecycle.Observer
+import com.google.android.material.snackbar.Snackbar
 import com.ugdgomezdiez.androidtraining.R
+import com.ugdgomezdiez.androidtraining.databinding.ActivityEx03GlideBinding
+import com.ugdgomezdiez.androidtraining.databinding.ActivityPerroBinding
 import com.ugdgomezdiez.androidtraining.features.ex02.data.DogDataRepository
 import com.ugdgomezdiez.androidtraining.features.ex02.data.local.XmlLocalDataSource
 import com.ugdgomezdiez.androidtraining.features.ex02.data.remote.ApiMockRemoteDataSource
@@ -18,10 +21,11 @@ import java.util.Date
 
 class Ex02MainActivity : AppCompatActivity(){
 
+    private lateinit var binding: ActivityPerroBinding
+
     val viewModel: Ex02PerroViewModel by lazy {
         Ex02PerroViewModel(
-            GetDogUseCase(DogDataRepository(XmlLocalDataSource(this), ApiMockRemoteDataSource())),
-            SaveDogUseCase(DogDataRepository(XmlLocalDataSource(this),ApiMockRemoteDataSource())))
+            GetDogUseCase(DogDataRepository(XmlLocalDataSource(this), ApiMockRemoteDataSource())))
     }
 
     override fun onCreate(savedInstanceState: Bundle?){
@@ -37,12 +41,27 @@ class Ex02MainActivity : AppCompatActivity(){
     private fun setupObservers() {
         val observer = Observer<Ex02PerroViewModel.UiState> {
             //Código al notificar el observador
+            if(it.isLoading){
+                Snackbar.make(binding.root, "Cargando....", Snackbar.LENGTH_SHORT).show()
+            }else{
+
+            }
+
             it.dog?.apply {
                 bindData(this)
             }
         }
         viewModel.uiState.observe(this, observer)
     }
+
+    private fun showLoading(){
+        binding.skeletonLayout.showSkeleton()
+    }
+
+
+
+
+
 
 
     private fun bindData(dog: Dog){

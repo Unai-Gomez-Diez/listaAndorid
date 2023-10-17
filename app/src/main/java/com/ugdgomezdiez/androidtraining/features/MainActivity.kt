@@ -21,6 +21,8 @@ class MainActivity : AppCompatActivity() {
         findViewById<Button>(R.id.action_ex02).setOnClickListener{
             startActivity(Intent(this, Ex02MainActivity::class.java))
         }
+
+
     }
 
 }

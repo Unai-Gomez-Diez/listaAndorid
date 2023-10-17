@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="app_name">AndroidTraining</string>
+    <string name="label_name">Name</string>
+    <string name="label_surname">SurName</string>
+    <string name="label_date_born">Date Born</string>
+    <string name="label_age">Age</string>
+    <string name="action_save">Save</string>
+    <string name="action_get">Clean</string>
+    <string name="action_clean">Delete</string>
+    <string name="label_getName">nombre</string>
+    <string name="label_getSurname">apellido</string>
+    <string name="action_ex01">ejercicio01</string>
+    <string name="action_ex02">ejercicio02</string>
+    <string name="label_descuento15">-15%</string>
+    <string name="label_burguerIt">Burguer It</string>
+
+</resources>

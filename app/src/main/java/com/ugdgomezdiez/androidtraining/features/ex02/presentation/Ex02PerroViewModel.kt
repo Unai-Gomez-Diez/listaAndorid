@@ -12,11 +12,11 @@ import com.ugdgomezdiez.androidtraining.features.ex02.domain.Dog
 import com.ugdgomezdiez.androidtraining.features.ex02.domain.GetDogUseCase
 import com.ugdgomezdiez.androidtraining.features.ex02.domain.SaveDogUseCase
 import kotlinx.coroutines.Dispatchers
+import kotlinx.coroutines.delay
 import kotlinx.coroutines.launch
 import java.util.Date
 
-class Ex02PerroViewModel(private val getDogUseCase: GetDogUseCase,
-                        private val saveDogUseCase: SaveDogUseCase): ViewModel() {
+class Ex02PerroViewModel(private val getDogUseCase: GetDogUseCase): ViewModel() {
 
     private val _uiState = MutableLiveData<Ex02PerroViewModel.UiState>()
     val uiState: LiveData<Ex02PerroViewModel.UiState> = _uiState
@@ -24,7 +24,10 @@ class Ex02PerroViewModel(private val getDogUseCase: GetDogUseCase,
 
 
     fun loadDog(){
+        _uiState.value =UiState(isLoading = true)
+
         viewModelScope.launch(Dispatchers.IO) {
+            delay(5000)
             getDogUseCase().fold(
                 { responseError(it) },
                 { responseGetDogSuccess(it) }
@@ -33,10 +36,7 @@ class Ex02PerroViewModel(private val getDogUseCase: GetDogUseCase,
     }
 
     private fun responseError(errorApp: ErrorApp){
-
-    }
-    private fun responseSuccess(isOk: Boolean){
-
+        _uiState.postValue(UiState(errorApp))
     }
 
     private fun responseGetDogSuccess(dog: Dog) {
