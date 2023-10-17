@@ -15,8 +15,7 @@ import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
 import java.util.Date
 
-class Ex02PerroViewModel(private val getDogUseCase: GetDogUseCase,
-                        private val saveDogUseCase: SaveDogUseCase): ViewModel() {
+class Ex02PerroViewModel(private val getDogUseCase: GetDogUseCase): ViewModel() {
 
     private val _uiState = MutableLiveData<Ex02PerroViewModel.UiState>()
     val uiState: LiveData<Ex02PerroViewModel.UiState> = _uiState
@@ -35,9 +34,7 @@ class Ex02PerroViewModel(private val getDogUseCase: GetDogUseCase,
     private fun responseError(errorApp: ErrorApp){
 
     }
-    private fun responseSuccess(isOk: Boolean){
 
-    }
 
     private fun responseGetDogSuccess(dog: Dog) {
         _uiState.postValue(UiState(dog= dog))

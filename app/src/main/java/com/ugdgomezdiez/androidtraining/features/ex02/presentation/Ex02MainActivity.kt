@@ -20,8 +20,7 @@ class Ex02MainActivity : AppCompatActivity(){
 
     val viewModel: Ex02PerroViewModel by lazy {
         Ex02PerroViewModel(
-            GetDogUseCase(DogDataRepository(XmlLocalDataSource(this), ApiMockRemoteDataSource())),
-            SaveDogUseCase(DogDataRepository(XmlLocalDataSource(this),ApiMockRemoteDataSource())))
+            GetDogUseCase(DogDataRepository(XmlLocalDataSource(this), ApiMockRemoteDataSource())))
     }
 
     override fun onCreate(savedInstanceState: Bundle?){
