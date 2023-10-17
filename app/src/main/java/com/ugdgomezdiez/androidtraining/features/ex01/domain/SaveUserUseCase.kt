@@ -12,5 +12,5 @@ class SaveUserUseCase(private val repository: UserRepository) {
     }
 
 
-    data class Input(val username: String, val surname: String)
+    data class Input(val username: String, val surname: String, val age: String)
 }

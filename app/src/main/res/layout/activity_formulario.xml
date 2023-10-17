@@ -1,103 +1,108 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
-    android:layout_height="wrap_content"
-    android:layout_margin="10pt"
+    android:layout_height="match_parent"
     android:orientation="vertical"
     tools:context=".features.ex01.presentation.Ex01MainActivity">
 
-    <TextView
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="@string/label_name" />
-
-    <EditText
-        android:id="@+id/input_name"
-        android:textSize="45dp"
-        android:text="@string/label_name"
+    <com.faltenreich.skeletonlayout.SkeletonLayout
+        android:id="@+id/skeletonLayout"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content" />
+        android:layout_height="wrap_content">
 
-    <TextView
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="@string/label_surname" />
-
-    <EditText
-        android:id="@+id/input_surname"
-        android:textSize="45dp"
-        android:text="@string/label_surname"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content" />
-
-    <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
-        xmlns:app="http://schemas.android.com/apk/res-auto"
-        xmlns:tools="http://schemas.android.com/tools"
-        android:layout_width="wrap_content"
-
-        android:layout_height="wrap_content"
-        android:orientation="horizontal"
-
-        tools:context=".features.ex01.presentation.Ex01MainActivity">
-
-
-        <Button
-            android:id="@+id/action_save"
+        <LinearLayout
+            android:id="@+id/layout_form"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:text="@string/action_save" />
+            android:orientation="vertical">
 
-        <Button
-            android:id="@+id/action_get"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:text="@string/action_get" />
+            <!-- Hijo 1 -->
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/label_name" />
 
-    </LinearLayout>
+            <EditText
+                android:id="@+id/input_name"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:inputType="text" />
 
-    <LinearLayout
-        android:layout_width="wrap_content"
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="@string/label_surname" />
 
-        android:layout_height="wrap_content"
-        android:orientation="horizontal"
+            <EditText
+                android:id="@+id/input_surname"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content" />
 
-        tools:context=".features.ex01.presentation.Ex01MainActivity">
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="@string/label_age" />
 
-        <TextView
+            <EditText
+                android:id="@+id/input_age"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content" />
 
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="@string/label_getName" />
-        <TextView
+            <Button
+                android:id="@+id/action_save"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="@string/action_save" />
 
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="@string/label_getSurname" />
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="20dp">
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Nombre" />
+
+                <View
+                    android:layout_width="150dp"
+                    android:layout_height="wrap_content" />
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Apellidos" />
+
+            </LinearLayout>
+
+            <include
+                android:id="@+id/row_1"
+                layout="@layout/view_row_list" />
+
+            <include
+                android:id="@+id/row_2"
+                layout="@layout/view_row_list" />
+
+            <include
+                android:id="@+id/row_3"
+                layout="@layout/view_row_list" />
+
+            <include
+                android:id="@+id/row_4"
+                layout="@layout/view_row_list" />
+
+            <include
+                android:id="@+id/row_5"
+                layout="@layout/view_row_list" />
 
 
-    </LinearLayout>
+        </LinearLayout>
+
+    </com.faltenreich.skeletonlayout.SkeletonLayout>
 
     <include
-        android:id="@+id/row_1"
-        layout="@layout/view_row_list" />
+        android:id="@+id/view_error"
+        layout="@layout/view_error" />
 
-    <include
-        android:id="@+id/row_2"
-        layout="@layout/view_row_list" />
+</FrameLayout>
 
-    <include
-        android:id="@+id/row_3"
-        layout="@layout/view_row_list" />
-
-    <include
-        android:id="@+id/row_4"
-        layout="@layout/view_row_list" />
-
-    <include
-        android:id="@+id/row_5"
-        layout="@layout/view_row_list" />
-
-
-
-</LinearLayout>

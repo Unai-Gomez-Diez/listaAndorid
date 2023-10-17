@@ -2,6 +2,7 @@ package com.ugdgomezdiez.androidtraining.features.ex01.presentation
 
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
+import android.renderscript.ScriptGroup.Binding
 import android.view.View
 import android.view.ViewGroup
 import android.widget.Button
@@ -9,53 +10,42 @@ import android.widget.EditText
 import android.widget.TextView
 import androidx.lifecycle.Observer
 import com.ugdgomezdiez.androidtraining.R
-//import com.ugdgomezdiez.androidtraining.databinding.ActivityFormularioBinding
+import com.ugdgomezdiez.androidtraining.app.ErrorApp
+import com.ugdgomezdiez.androidtraining.app.extensions.hide
+import com.ugdgomezdiez.androidtraining.app.extensions.visible
+import com.ugdgomezdiez.androidtraining.databinding.ActivityFormularioBinding
 import com.ugdgomezdiez.androidtraining.features.ex01.data.UserDataRepository
 import com.ugdgomezdiez.androidtraining.features.ex01.data.local.XmlLocalDataSource
 import com.ugdgomezdiez.androidtraining.features.ex01.domain.GetUserUseCase
-import com.ugdgomezdiez.androidtraining.features.ex01.domain.ResetUserUseCase
 import com.ugdgomezdiez.androidtraining.features.ex01.domain.SaveUserUseCase
 import com.ugdgomezdiez.androidtraining.features.ex01.domain.User
+
 
 class Ex01MainActivity : AppCompatActivity() {
 
 
-   // lateinit var binding: ActivityFormularioBinding
+   lateinit var binding: ActivityFormularioBinding
 
     //val viewModels: FormularioViewModel by viewModels()
     val viewModel: Ex01FormularioViewModel by lazy {
         Ex01FormularioViewModel(
             SaveUserUseCase(UserDataRepository(XmlLocalDataSource(this))),
-            GetUserUseCase(UserDataRepository(XmlLocalDataSource(this))),
-            ResetUserUseCase(UserDataRepository(XmlLocalDataSource(this)))
-        )
+            GetUserUseCase(UserDataRepository(XmlLocalDataSource(this))))
     }
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-      //  bindView()
-        setContentView(R.layout.activity_formulario)
+        bindView()
         setupView()
         setupObservers()
-        val viewGroup1 = findViewById<ViewGroup>(R.id.row_1)
-        viewGroup1.visibility=View.GONE
-        val viewGroup2 = findViewById<ViewGroup>(R.id.row_2)
-        viewGroup2.visibility=View.GONE
-        val viewGroup3 = findViewById<ViewGroup>(R.id.row_3)
-        viewGroup3.visibility=View.GONE
-        val viewGroup4 = findViewById<ViewGroup>(R.id.row_4)
-        viewGroup4.visibility=View.GONE
-        val viewGroup5 = findViewById<ViewGroup>(R.id.row_5)
-        viewGroup5.visibility=View.GONE
-
-        //viewModel.loadUser()
+        viewModel.loadUser()
     }
 
- /*   private fun bindView(){
+    private fun bindView(){
         binding = ActivityFormularioBinding.inflate(layoutInflater)
         val view = binding.root
         setContentView(view)
-    }*/
+    }
 
 
 
@@ -63,63 +53,18 @@ class Ex01MainActivity : AppCompatActivity() {
         //poner uno para recuperar
         val actionButton = findViewById<Button>(R.id.action_save)
         actionButton.setOnClickListener {
-            viewModel.saveUser(getNameInput(),getSurnameInput())
-            viewModel.loadUser()
+            viewModel.saveUser(getNameInput(),getSurnameInput(), getAgeInput())
 
-            findViewById<ViewGroup>(R.id.row_1).findViewById<TextView>(R.id.name)
-        }
-
-        val actionButton2 = findViewById<Button>(R.id.action_get)
-        actionButton2.setOnClickListener {
-            findViewById<EditText>(R.id.input_name).setText("")
-            findViewById<EditText>(R.id.input_surname).setText("")
-        }
-
-        val actionButton3 = findViewById<ViewGroup>(R.id.row_1).findViewById<Button>(R.id.action_clean)
-        actionButton3.setOnClickListener {
-            viewModel.resetUser()
-
-            val viewGroup = findViewById<ViewGroup>(R.id.row_1)
-            viewGroup.visibility=View.GONE
 
 
         }
-        val actionButton4 = findViewById<ViewGroup>(R.id.row_2).findViewById<Button>(R.id.action_clean)
-        actionButton4.setOnClickListener {
-            viewModel.resetUser()
-
-            val viewGroup = findViewById<ViewGroup>(R.id.row_2)
-            viewGroup.visibility=View.GONE
-
-
+        binding.actionSave.setOnClickListener {
+            //lo que sea
         }
-        val actionButton5 = findViewById<ViewGroup>(R.id.row_3).findViewById<Button>(R.id.action_clean)
-        actionButton5.setOnClickListener {
-            viewModel.resetUser()
+        findViewById<ViewGroup>(R.id.row_2).findViewById<TextView>(R.id.name)
+        findViewById<ViewGroup>(R.id.row_3).findViewById<TextView>(R.id.name)
+        findViewById<ViewGroup>(R.id.row_4).findViewById<TextView>(R.id.name)
 
-            val viewGroup = findViewById<ViewGroup>(R.id.row_3)
-            viewGroup.visibility=View.GONE
-
-
-        }
-        val actionButton6 = findViewById<ViewGroup>(R.id.row_4).findViewById<Button>(R.id.action_clean)
-        actionButton6.setOnClickListener {
-            viewModel.resetUser()
-
-            val viewGroup = findViewById<ViewGroup>(R.id.row_4)
-            viewGroup.visibility=View.GONE
-
-
-        }
-        val actionButton7 = findViewById<ViewGroup>(R.id.row_5).findViewById<Button>(R.id.action_clean)
-        actionButton7.setOnClickListener {
-            viewModel.resetUser()
-
-            val viewGroup = findViewById<ViewGroup>(R.id.row_5)
-            viewGroup.visibility=View.GONE
-
-
-        }
 
     }
 
@@ -130,11 +75,24 @@ class Ex01MainActivity : AppCompatActivity() {
    private fun getSurnameInput(): String=
         findViewById<EditText>(R.id.input_surname).text.toString()
 
+    private fun getAgeInput(): String =
+        findViewById<EditText>(R.id.input_age).text.toString()
+
 
 
     private fun setupObservers() {
         val observer = Observer<Ex01FormularioViewModel.UiState> {
             //Código al notificar el observador
+            if (it.isLoading) {
+                //Muestro el loading
+                showLoading()
+            } else {
+                //Oculto el loading
+                hideLoading()
+            }
+            it.errorApp?.let {
+                showError(it)
+            }
             it.user?.apply {
                 bindData(this)
             }
@@ -142,9 +100,28 @@ class Ex01MainActivity : AppCompatActivity() {
         viewModel.uiState.observe(this, observer)
     }
 
+    private fun showError(error: ErrorApp) {
+        binding.viewError.layoutError.visible()
+        binding.layoutForm.hide()
+        when (error) {
+            ErrorApp.UnknowError -> binding.viewError.messageError.text =
+                getString(R.string.label_unknown_error)
+        }
+    }
+
+    private fun showLoading() {
+        binding.skeletonLayout.showSkeleton()
+    }
+
+    private fun hideLoading() {
+        binding.skeletonLayout.showOriginal()
+        binding.layoutForm.visible()
+    }
+
     private fun bindData(user: User) {
         setNameInput(user.username)
         setSurnameInput(user.surname)
+        setAgeInput(user.age)
 
     }
 
@@ -156,5 +133,30 @@ class Ex01MainActivity : AppCompatActivity() {
         findViewById<EditText>(R.id.surname).setText(surname)
     }
 
+    private fun setAgeInput(age: String) {
+        findViewById<EditText>(R.id.input_age).setText(age)
+        findViewById<EditText>(R.id.input_age).visibility = View.VISIBLE
+        findViewById<EditText>(R.id.input_age).visibility = View.GONE
+        findViewById<EditText>(R.id.input_age).visibility = View.INVISIBLE
+    }
+
+    fun bindData(users: List<User>) {
+        if (users.size == 1) {
+            findViewById<ViewGroup>(R.id.row_1).apply {
+                findViewById<TextView>(R.id.name).text = users.get(0).username
+                findViewById<TextView>(R.id.surname).text = users.get(0).surname
+                findViewById<TextView>(R.id.action_clean).setOnClickListener {
+                    //viewModel.deleteUser(users.get(0).id)
+                }
+            }
+            binding.apply {
+                row1.name.text
+                row2.name.text
+            }
+        }
+        if (users.size == 2) {
+
+        }
+    }
 
 }

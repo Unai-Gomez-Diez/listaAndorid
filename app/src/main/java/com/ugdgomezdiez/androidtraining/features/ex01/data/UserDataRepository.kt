@@ -14,10 +14,8 @@ class UserDataRepository(private val localDataSource: XmlLocalDataSource) : User
     }
 
     override fun obtain(): Either<ErrorApp, User> {
-        return localDataSource.findUser(1)
+        return localDataSource.findUser()
     }
 
-    override fun reset(input: SaveUserUseCase.Input): Either<ErrorApp, Boolean> {
-        return localDataSource.saveUser(input)
-    }
+
 }

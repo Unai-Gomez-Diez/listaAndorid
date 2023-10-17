@@ -37,6 +37,9 @@ android {
         buildFeatures {
             viewBinding = true
         }
+    buildFeatures {
+        dataBinding true
+    }
     
 
 }
@@ -55,4 +58,10 @@ dependencies {
     testImplementation 'junit:junit:4.13.2'
     androidTestImplementation 'androidx.test.ext:junit:1.1.5'
     androidTestImplementation 'androidx.test.espresso:espresso-core:3.5.1'
+    implementation "androidx.databinding:databinding-runtime:4.3.1"
+    //Glide: Imágenes por URL
+    implementation("com.github.bumptech.glide:glide:4.16.0")
+
+    // Skeleton Layout
+    implementation("com.faltenreich:skeletonlayout:5.0.0")
 }
