@@ -30,7 +30,9 @@ class ApiRemoteDataSource:DogRepository{
         }
     }
 
-
+    override fun saveDog(): Either<ErrorApp, Boolean> {
+        TODO("Not yet implemented")
+    }
 
 
 }

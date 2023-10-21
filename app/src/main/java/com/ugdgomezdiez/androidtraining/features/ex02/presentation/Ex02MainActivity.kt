@@ -34,6 +34,7 @@ class Ex02MainActivity : AppCompatActivity(){
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_perro)
         setupView()
+        setupBinding()
     }
 
     private fun setupView(){
@@ -62,15 +63,21 @@ class Ex02MainActivity : AppCompatActivity(){
 
 
 
+    private fun setupBinding(){
+        binding = ActivityPerroBinding.inflate(layoutInflater)
+        setContentView(binding.root)
+    }
 
 
 
 
     private fun bindData(dogModel: DogModel){
+        imagen.setUrl(appetizer.image)
         setNameDogInput(dogModel.name)
         setDescriptionDogInput(dogModel.short_description)
         setSexDogInput(dogModel.sex)
         setDatBornDogInput(dogModel.date_birth)
+        setUrlImageInput(dogModel.url_image)
 
     }
     private fun setNameDogInput(name: String) {
