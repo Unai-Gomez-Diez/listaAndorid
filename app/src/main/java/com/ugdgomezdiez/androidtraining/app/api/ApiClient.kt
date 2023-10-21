@@ -1,6 +1,7 @@
 package com.ugdgomezdiez.androidtraining.app.api
 
 import retrofit2.Retrofit
+import retrofit2.converter.gson.GsonConverterFactory
 
 class ApiClient {
     private val retrofit = Retrofit.Builder()

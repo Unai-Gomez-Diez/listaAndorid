@@ -22,6 +22,7 @@
             tools:context=".features.ex01.presentation.Ex01MainActivity">
 
             <ImageView
+                android:id="@+id/imageUrl"
                 android:layout_width="wrap_content"
                 android:layout_height="200dp"
 

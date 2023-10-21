@@ -11,8 +11,10 @@ import com.ugdgomezdiez.androidtraining.R
 import com.ugdgomezdiez.androidtraining.databinding.ActivityEx03GlideBinding
 import com.ugdgomezdiez.androidtraining.databinding.ActivityPerroBinding
 import com.ugdgomezdiez.androidtraining.features.ex02.data.DogDataRepository
+import com.ugdgomezdiez.androidtraining.features.ex02.data.DogModel
 import com.ugdgomezdiez.androidtraining.features.ex02.data.local.XmlLocalDataSource
 import com.ugdgomezdiez.androidtraining.features.ex02.data.remote.ApiMockRemoteDataSource
+import com.ugdgomezdiez.androidtraining.features.ex02.data.remote.ApiRemoteDataSource
 import com.ugdgomezdiez.androidtraining.features.ex02.domain.Dog
 import com.ugdgomezdiez.androidtraining.features.ex02.domain.GetDogUseCase
 import com.ugdgomezdiez.androidtraining.features.ex02.domain.SaveDogUseCase
@@ -25,7 +27,7 @@ class Ex02MainActivity : AppCompatActivity(){
 
     val viewModel: Ex02PerroViewModel by lazy {
         Ex02PerroViewModel(
-            GetDogUseCase(DogDataRepository(XmlLocalDataSource(this), ApiMockRemoteDataSource())))
+            GetDogUseCase(DogDataRepository(XmlLocalDataSource(this), ApiRemoteDataSource())))
     }
 
     override fun onCreate(savedInstanceState: Bundle?){
@@ -47,7 +49,7 @@ class Ex02MainActivity : AppCompatActivity(){
 
             }
 
-            it.dog?.apply {
+            it.dogModel?.apply {
                 bindData(this)
             }
         }
@@ -64,11 +66,12 @@ class Ex02MainActivity : AppCompatActivity(){
 
 
 
-    private fun bindData(dog: Dog){
-        setNameDogInput(dog.name)
-        setDescriptionDogInput(dog.description)
-        setSexDogInput(dog.sex)
-        setDatBornDogInput(dog.dateBorn)
+    private fun bindData(dogModel: DogModel){
+        setNameDogInput(dogModel.name)
+        setDescriptionDogInput(dogModel.short_description)
+        setSexDogInput(dogModel.sex)
+        setDatBornDogInput(dogModel.date_birth)
+
     }
     private fun setNameDogInput(name: String) {
         findViewById<TextView>(R.id.nombre_dog).setText(name)
@@ -82,10 +85,12 @@ class Ex02MainActivity : AppCompatActivity(){
         findViewById<TextView>(R.id.sex_dog).setText(sex)
     }
 
-    @SuppressLint("SimpleDateFormat")
-    private fun setDatBornDogInput(dateBorn: Date){
-        val dateFormat = SimpleDateFormat("dd/MM/yyyy") // Define el formato de fecha deseado
-        val dateStr = dateFormat.format(dateBorn)
-        findViewById<TextView>(R.id.dateborn_dog).text=dateStr
+
+    private fun setDatBornDogInput(dateBorn: String){
+        findViewById<TextView>(R.id.dateborn_dog).setText(dateBorn)
+    }
+
+    private fun setUrlImageInput(urlImage: String){
+        findViewById<TextView>(R.id.imageUrl).setText(urlImage)
     }
 }

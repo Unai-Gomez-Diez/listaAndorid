@@ -5,21 +5,22 @@ import com.iesam.kotlintrainning.right
 import com.ugdgomezdiez.androidtraining.app.ErrorApp
 import com.ugdgomezdiez.androidtraining.features.ex02.data.local.XmlLocalDataSource
 import com.ugdgomezdiez.androidtraining.features.ex02.data.remote.ApiMockRemoteDataSource
+import com.ugdgomezdiez.androidtraining.features.ex02.data.remote.ApiRemoteDataSource
 import com.ugdgomezdiez.androidtraining.features.ex02.domain.Dog
 import com.ugdgomezdiez.androidtraining.features.ex02.domain.DogRepository
 import com.ugdgomezdiez.androidtraining.features.ex02.domain.SaveDogUseCase
 
 class DogDataRepository(
     val localSource: XmlLocalDataSource,
-    val apiSource: ApiMockRemoteDataSource
+    val apiSource: ApiRemoteDataSource
 ): DogRepository{
-    override fun findDog(): Either<ErrorApp, Dog> {
+    override fun findDog(): Either<ErrorApp, DogModel> {
         val resultLocal= localSource.findDog()
 
         if(resultLocal.isRight()){
             return resultLocal
         }
-        return apiSource.getDogMock().map {
+        return apiSource.findDog().map {
             localSource.setDog(it)
             it
         }
@@ -28,7 +29,7 @@ class DogDataRepository(
 
 
     override fun saveDog(): Either<ErrorApp, Boolean> {
-        apiSource.getDogMock()
+        apiSource.findDog()
         return true.right()
     }
 }

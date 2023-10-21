@@ -5,19 +5,21 @@ import com.iesam.kotlintrainning.Either
 import com.iesam.kotlintrainning.left
 import com.iesam.kotlintrainning.right
 import com.ugdgomezdiez.androidtraining.app.ErrorApp
+import com.ugdgomezdiez.androidtraining.features.ex02.data.DogModel
 import com.ugdgomezdiez.androidtraining.features.ex02.domain.Dog
 import java.util.Date
 
 class XmlLocalDataSource (private val context: Context){
     val sharedPref = context.getSharedPreferences("dog", Context.MODE_PRIVATE)
 
-    fun setDog(input: Dog):Either<ErrorApp,Boolean>{
+    fun setDog(dogModel: DogModel):Either<ErrorApp,Boolean>{
         return try {
             with(sharedPref.edit()){
-                putString("name",input.name)
-                putString("description",input.description)
-                putString("gen",input.sex)
-                putString("dateBorn",input.dateBorn.toString())
+                putString("name",dogModel.name)
+                putString("description",dogModel.short_description)
+                putString("gen",dogModel.sex)
+                putString("dateBorn",dogModel.date_birth)
+                putString("url_image",dogModel.url_image)
 
                 apply()
             }
@@ -28,14 +30,15 @@ class XmlLocalDataSource (private val context: Context){
 
     }
 
-    fun findDog(): Either<ErrorApp, Dog>{
+    fun findDog(): Either<ErrorApp, DogModel>{
         return try {
 
-            Dog(
+            DogModel(
                 sharedPref.getString("name","")!!,
                 sharedPref.getString("description","")!!,
                 sharedPref.getString("gen","")!!,
-                Date(sharedPref.getString("dateBorn","")!!)
+                sharedPref.getString("dateBorn","")!!,
+                sharedPref.getString("url_image","")!!
 
             ).right()
         }catch (ex: java.lang.Exception){

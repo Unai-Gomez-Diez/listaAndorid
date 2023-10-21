@@ -2,7 +2,7 @@ package com.ugdgomezdiez.androidtraining.features.ex02.data
 
 import com.google.gson.annotations.SerializedName
 
-data class DogApiModel(
+class DogModel(
         @SerializedName("name") val name: String,
         @SerializedName("short_description") val short_description: String,
         @SerializedName("sex") val sex: String,
