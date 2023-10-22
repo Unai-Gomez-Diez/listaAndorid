@@ -17,7 +17,8 @@ import kotlinx.coroutines.delay
 import kotlinx.coroutines.launch
 import java.util.Date
 
-class Ex02PerroViewModel(private val getDogUseCase: GetDogUseCase): ViewModel() {
+class Ex02PerroViewModel(private val getDogUseCase: GetDogUseCase,
+                         private val saveDogUseCase: SaveDogUseCase): ViewModel() {
 
     private val _uiState = MutableLiveData<Ex02PerroViewModel.UiState>()
     val uiState: LiveData<Ex02PerroViewModel.UiState> = _uiState
@@ -29,6 +30,7 @@ class Ex02PerroViewModel(private val getDogUseCase: GetDogUseCase): ViewModel() 
 
         viewModelScope.launch(Dispatchers.IO) {
             delay(5000)
+            saveDogUseCase()
             getDogUseCase().fold(
                 { responseError(it) },
                 { responseGetDogSuccess(it) }
