@@ -5,6 +5,6 @@ import com.ugdgomezdiez.androidtraining.app.ErrorApp
 import com.ugdgomezdiez.androidtraining.features.ex02.data.DogModel
 
 interface DogRepository {
-    fun findDog(): Either<ErrorApp, DogModel>
-    fun saveDog(): Either<ErrorApp, Boolean>
+    suspend fun findDog(): Either<ErrorApp, Dog>
+    suspend fun saveDog(): Either<ErrorApp, Boolean>
 }

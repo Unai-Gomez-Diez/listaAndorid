@@ -14,6 +14,7 @@ import com.ugdgomezdiez.androidtraining.features.ex02.data.DogDataRepository
 import com.ugdgomezdiez.androidtraining.features.ex02.data.DogModel
 import com.ugdgomezdiez.androidtraining.features.ex02.data.local.XmlLocalDataSource
 import com.ugdgomezdiez.androidtraining.features.ex02.data.remote.ApiRemoteDataSource
+import com.ugdgomezdiez.androidtraining.features.ex02.domain.Dog
 import com.ugdgomezdiez.androidtraining.features.ex02.domain.DogRepository
 import com.ugdgomezdiez.androidtraining.features.ex02.domain.GetDogUseCase
 import com.ugdgomezdiez.androidtraining.features.ex02.domain.SaveDogUseCase
@@ -53,7 +54,7 @@ class Ex02MainActivity : AppCompatActivity(){
                 hideLoading()
             }
 
-            it.dogModel?.apply {
+            it.dog?.apply {
                 bindData(this)
             }
         }
@@ -80,13 +81,12 @@ class Ex02MainActivity : AppCompatActivity(){
 
 
 
-    private fun bindData(dogModel: DogModel){
-        setUrlImageInput(dogModel.url_image)
-        setNameDogInput(dogModel.name)
-        setDescriptionDogInput(dogModel.short_description)
-        setSexDogInput(dogModel.sex)
-        setDatBornDogInput(dogModel.date_birth)
-        setUrlImageInput(dogModel.url_image)
+    private fun bindData(dog: Dog){
+        setUrlImageInput(dog.urlimage)
+        setNameDogInput(dog.name)
+        setDescriptionDogInput(dog.description)
+        setSexDogInput(dog.sex)
+        setDatBornDogInput(dog.dateBorn)
 
     }
     private fun setNameDogInput(name: String) {

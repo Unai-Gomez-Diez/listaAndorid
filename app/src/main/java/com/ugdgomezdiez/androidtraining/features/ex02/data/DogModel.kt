@@ -11,5 +11,3 @@ class DogModel(
         @SerializedName("url_image") val url_image: String
 )
 
-fun DogModel.toModel(): Dog=
-        Dog(this.name, this.short_description, this.sex, this.date_birth,this.url_image)

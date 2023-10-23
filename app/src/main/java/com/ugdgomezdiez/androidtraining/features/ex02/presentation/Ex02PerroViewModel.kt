@@ -42,12 +42,12 @@ class Ex02PerroViewModel(private val getDogUseCase: GetDogUseCase,
         _uiState.postValue(UiState(errorApp))
     }
 
-    private fun responseGetDogSuccess(dogModel: DogModel) {
-        _uiState.postValue(UiState(dogModel= dogModel))
+    private fun responseGetDogSuccess(dog: Dog) {
+        _uiState.postValue(UiState(dog= dog))
     }
     data class UiState(
         val errorApp: ErrorApp? = null,
         val isLoading: Boolean = false,
-        val dogModel: DogModel? = null
+        val dog: Dog? = null
     )
 }

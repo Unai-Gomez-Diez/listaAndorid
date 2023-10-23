@@ -15,9 +15,9 @@ class XmlLocalDataSource (private val context: Context){
     val sharedPref = context.getSharedPreferences("dog", Context.MODE_PRIVATE)
     private val apiClient: ApiClient = ApiClient()
 
-    fun setDog():Either<ErrorApp,Boolean>{
+    suspend fun setDog():Either<ErrorApp,Boolean>{
         return try {
-            val response: Response<DogModel> = apiClient.apiService.getData().execute()
+            val response: Response<DogModel> = apiClient.apiService.getData()
 
             if (response.isSuccessful) {
                 val responseBody = response.body() // Obtén el cuerpo de la respuesta
@@ -44,10 +44,10 @@ class XmlLocalDataSource (private val context: Context){
 
     }
 
-    fun findDog(): Either<ErrorApp, DogModel>{
+    fun findDog(): Either<ErrorApp, Dog>{
         return try {
 
-            DogModel(
+            Dog(
                 sharedPref.getString("name","")!!,
                 sharedPref.getString("description","")!!,
                 sharedPref.getString("gen","")!!,
