@@ -25,6 +25,13 @@
         android:text="@string/action_ex02"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"/>
+    <Button
+        android:id="@+id/action_ex03"
+        android:layout_gravity="center"
+        android:layout_margin="20dp"
+        android:text="@string/action_ex02"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"/>
 
 
 

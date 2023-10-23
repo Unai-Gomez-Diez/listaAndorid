@@ -13,5 +13,5 @@
     <string name="action_ex02">ejercicio02</string>
     <string name="label_descuento15">-15%</string>
     <string name="label_burguerIt">Burguer It</string>
-
+    <string name="label_error">Error en la ejecucion de la aplicacion</string>
 </resources>

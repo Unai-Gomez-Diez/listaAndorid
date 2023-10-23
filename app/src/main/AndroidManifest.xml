@@ -17,7 +17,7 @@
         android:theme="@style/Theme.AndroidTraining"
         tools:targetApi="31">
         <activity
-            android:name=".features.ex03.Ex03Glide"
+            android:name=".features.ex03.presentation.Ex03MainActivity"
             android:exported="false" />
         <activity
             android:name=".features.ex01.presentation.Ex01MainActivity"
