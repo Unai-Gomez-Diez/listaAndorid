@@ -7,10 +7,9 @@ import java.util.Date
 class SaveUserUseCase(private val repository: UserRepository) {
 
     //sustituir por invoke
-    operator fun invoke(input: Input): Either<ErrorApp, Boolean> {
-    return repository.save(input)
+    operator fun invoke(user: User): Either<ErrorApp, Boolean> {
+    return repository.save(user)
     }
 
 
-    data class Input(val username: String, val surname: String)
-}
+    }

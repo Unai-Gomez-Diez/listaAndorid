@@ -9,15 +9,17 @@ import com.ugdgomezdiez.androidtraining.features.ex01.domain.User
 import com.ugdgomezdiez.androidtraining.features.ex01.domain.UserRepository
 
 class UserDataRepository(private val localDataSource: XmlLocalDataSource) : UserRepository {
-    override fun save(input: SaveUserUseCase.Input): Either<ErrorApp, Boolean> {
-        return localDataSource.saveUser(input)
+    override fun save(user: User): Either<ErrorApp, Boolean> {
+        return localDataSource.saveUser(user)
     }
 
-    override fun obtain(): Either<ErrorApp, User> {
-        return localDataSource.findUser(1)
+
+
+    override fun obtain(): Either<ErrorApp, List<User>> {
+        return localDataSource.findUser()
     }
 
-    override fun reset(input: SaveUserUseCase.Input): Either<ErrorApp, Boolean> {
-        return localDataSource.saveUser(input)
+    override fun delete(userId: String): Either<ErrorApp, Boolean> {
+        return localDataSource.removeUserById(userId)
     }
 }

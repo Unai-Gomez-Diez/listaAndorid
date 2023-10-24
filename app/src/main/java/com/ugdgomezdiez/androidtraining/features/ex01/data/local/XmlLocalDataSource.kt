@@ -15,15 +15,13 @@ class XmlLocalDataSource (private val context: Context){
 
     private val gson = Gson()
 
-    init {
-        sharedPref.edit().remove("users").apply()
-    }
-    fun saveUser(input: SaveUserUseCase.Input): Either<ErrorApp, Boolean> {
+
+    fun saveUser(user: User): Either<ErrorApp, Boolean> {
 
         return try {
             with(sharedPref.edit()){
                 val id=(1..100).random()
-                val user = User(id, input.username,input.surname)
+                val user = User(id, user.username,user.surname)
                 val jsonUser =gson.toJson(user, User::class.java)
                 putString(id.toString(), jsonUser)
                 apply()
@@ -35,39 +33,27 @@ class XmlLocalDataSource (private val context: Context){
 
 
     }
-    fun findUser(userId: Int): Either<ErrorApp, User> {
+    fun findUser(): Either<ErrorApp, List<User>> {
         return try {
-            val jsonUser = sharedPref.getString(userId.toString(),"{}")
-            gson.fromJson(jsonUser, User::class.java).right()
-
+            val jsonUsers= sharedPref.all as Map<String, String>
+            val users=jsonUsers.values.map {
+                gson.fromJson(it, User::class.java)
+            }
+            return users.right()
         } catch (ex: java.lang.Exception) {
             ErrorApp.UnknowError.left()
         }
     }
 
-    fun resetUser(input: SaveUserUseCase.Input): Either<ErrorApp, Boolean> {
 
-        return try {
-            with(sharedPref.edit()){
-                putString("username", "")
-                putString("surname", "")
-
-                apply()
-            }
+    fun removeUserById(userId: String):Either<ErrorApp,Boolean>{
+        return try{
+            sharedPref.edit().remove(userId).apply()
             true.right()
-        }catch (ex: Exception){
-            ErrorApp.UnknowError.left()
+        }catch (ex:Exception){
+            return ErrorApp.UnknowError.left()
         }
 
-
-    }
-    fun removeUserById(userId: Int){
-        //primer string es el UserId y el segundo es jsonUser
-        val mapUser: Map<String,String> = sharedPref.all as Map<String,String>
-        //recuperar usuarios de una lista
-        //eliminar el usuario de la lista
-        //serializar usuario a usuario y guardarlo en el xml
-        mapUser
     }
 
 }
