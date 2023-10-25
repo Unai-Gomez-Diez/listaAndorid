@@ -8,6 +8,7 @@ import android.widget.Button
 import android.widget.EditText
 import android.widget.TextView
 import androidx.lifecycle.Observer
+import com.google.android.material.snackbar.Snackbar
 import com.ugdgomezdiez.androidtraining.R
 import com.ugdgomezdiez.androidtraining.app.ErrorApp
 import com.ugdgomezdiez.androidtraining.databinding.ActivityFormularioBinding
@@ -63,7 +64,7 @@ class Ex01MainActivity : AppCompatActivity() {
             findViewById<ViewGroup>(R.id.row_1).findViewById<TextView>(R.id.name)
         }
 
-        val actionButton2 = findViewById<Button>(R.id.action_get)
+        val actionButton2 = findViewById<Button>(R.id.action_clear)
         actionButton2.setOnClickListener {
             findViewById<EditText>(R.id.input_name).setText("")
             findViewById<EditText>(R.id.input_surname).setText("")
@@ -83,7 +84,7 @@ class Ex01MainActivity : AppCompatActivity() {
 
 
     private fun setupObservers() {
-        val observer= Observer<Ex01FormViewModel.UiState>{
+        val observer= Observer<Ex01FormularioViewModel.UiState>{
             if(it.isLoading){
                 showLoading()
             }else{
@@ -96,14 +97,14 @@ class Ex01MainActivity : AppCompatActivity() {
                 bindData(this)
             }
         }
-        viewModels.uiState.observe(this,observer)}
+        viewModel.uiState.observe(this,observer)}
 
     private fun showError(error: ErrorApp) {
-        binding.layoutError.visible()
-        when(error){
-            ErrorApp.UnknowError -> binding.messageError.text=
-                getString(R.string.lable_unknown_error)
-        }
+        Snackbar.make(
+            binding.root,
+            getString(R.string.label_error),
+            Snackbar.LENGTH_SHORT
+        ).show()
     }
 
     private fun showLoading(){
@@ -116,18 +117,107 @@ class Ex01MainActivity : AppCompatActivity() {
 
 
 
-     fun bindData(user: User) {
-        setNameInput(user.username)
-        setSurnameInput(user.surname)
+     fun bindData(users: List<User>) {
+         val row1=findViewById<ViewGroup>(R.id.row_1)
+         val row2=findViewById<ViewGroup>(R.id.row_2)
+         val row3=findViewById<ViewGroup>(R.id.row_3)
+         val row4=findViewById<ViewGroup>(R.id.row_4)
+         val row5=findViewById<ViewGroup>(R.id.row_5)
+
+         if(users.size>0){
+             binding.row1.apply {
+                 setNameInput(users[0].username,row1)
+                 setSurnameInput(users[0].surname,row1)
+                 setIdInput(users[0].id,row1)
+                 row1.visibility=View.VISIBLE
+                 row1.findViewById<Button>(R.id.action_clean).setOnClickListener {
+                     viewModel.deleteUser(users[0].id.toString())
+                     deleteText(row1)
+                     row1.visibility=View.GONE
+                 }
+             }
+         }
+
+         if(users.size>1){
+             binding.row2.apply {
+                 setNameInput(users[1].username,row2)
+                 setSurnameInput(users[1].surname,row2)
+                 setIdInput(users[1].id,row2)
+                 row2.visibility=View.VISIBLE
+                 row2.findViewById<Button>(R.id.action_clean).setOnClickListener {
+                     viewModel.deleteUser(users[1].id.toString())
+                     deleteText(row2)
+                     row2.visibility=View.GONE
+                 }
+             }
+         }
+
+         if (users.size>2){
+             binding.row3.apply {
+                 setNameInput(users[2].username,row3)
+                 setSurnameInput(users[2].surname,row3)
+                 setIdInput(users[2].id,row3)
+                 row3.visibility=View.VISIBLE
+                 row3.findViewById<Button>(R.id.action_clean).setOnClickListener {
+                     viewModel.deleteUser(users[2].id.toString())
+                     deleteText(row3)
+                     row3.visibility=View.GONE
+                 }
+             }
+         }
+
+         if (users.size>3){
+             binding.row4.apply {
+                 setNameInput(users[3].username,row4)
+                 setSurnameInput(users[3].surname,row4)
+                 setIdInput(users[3].id,row4)
+                 row4.visibility=View.VISIBLE
+                 row4.findViewById<Button>(R.id.action_clean).setOnClickListener {
+                     viewModel.deleteUser(users[3].id.toString())
+                     deleteText(row4)
+                     row4.visibility=View.GONE
+                 }
+             }
+         }
+
+         if (users.size>4){
+             binding.row5.apply {
+                 setNameInput(users[4].username,row5)
+                 setSurnameInput(users[4].surname,row5)
+                 setIdInput(users[4].id,row5)
+                 row5.visibility=View.VISIBLE
+                 row5.findViewById<Button>(R.id.action_clean).setOnClickListener {
+                     viewModel.deleteUser(users[4].id.toString())
+                     deleteText(row5)
+                     row5.visibility=View.GONE
+                 }
+             }
+         }
 
     }
 
-    private fun setNameInput(name: String) {
-        findViewById<EditText>(R.id.name).setText(name)
+    private fun deleteText(row:ViewGroup){
+        row.findViewById<TextView>(R.id.label_id).text=null
+        row.findViewById<TextView>(R.id.name).text=null
+        row.findViewById<TextView>(R.id.surname).text=null
     }
 
-    private fun setSurnameInput(surname: String) {
-        findViewById<EditText>(R.id.surname).setText(surname)
+    private fun setNameInput(name: String, row:ViewGroup) {
+        row.findViewById<TextView>(R.id.name).setText(name)
+    }
+
+
+    private fun setSurnameInput(surname: String,row:ViewGroup) {
+        row.findViewById<TextView>(R.id.surname).setText(surname)
+    }
+
+    private fun setIdInput(id:Int,row:ViewGroup){
+        row.findViewById<TextView>(R.id.label_id).setText(id.toString())
+    }
+
+    private fun clearScreen(){
+        findViewById<EditText>(R.id.input_surname).setText(null)
+        findViewById<EditText>(R.id.input_name).setText(null)
     }
 
 

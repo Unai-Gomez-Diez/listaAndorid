@@ -20,7 +20,7 @@ class XmlLocalDataSource (private val context: Context){
 
         return try {
             with(sharedPref.edit()){
-                val id=(1..100).random()
+                val id=(1..4).random()
                 val user = User(id, user.username,user.surname)
                 val jsonUser =gson.toJson(user, User::class.java)
                 putString(id.toString(), jsonUser)
